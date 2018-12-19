@@ -299,7 +299,9 @@ func (client *Client) sendCommands(cmdArgs <-chan []string, data chan<- interfac
 End:
 
     // Close client and synchronization issues are a nightmare to solve.
-    c.Close()
+    if c != nil {
+    	c.Close()
+    }
 
     // Push nil back onto queue
     client.pushCon(nil)
